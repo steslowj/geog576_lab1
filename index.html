@@ -1,12 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Hello, world!</title>
+  <title>ESRI JS Map</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="" />
+
+  
+  <!-- callls for the arcgis api's CSS file and JS library -->
+  <link rel="stylesheet" href="https://js.arcgis.com/4.25/esri/themes/light/main.css">
+  <script src="https://js.arcgis.com/4.25/"></script>
+  
+  <!-- adding the modules needed for a full screen map app -->
+  <script>  
+    require(["esri/config", "esri/Map", "esri/views/MapView"], function(esriConfig, Map, MapView) { 
+      esriConfig.apiKey = "AAPK9c2d1c71e0c54fea8c41854d79e2bb2aRY4BboQbjkrg1gzIR4byHHAPQAnvnqnY0kwBUXQfbQGvJjGbV3it18SqxWbjCtON";
+      const map = new Map({
+        basemap: "arcgis-topographic" // Basemap layer service 
+      });
+
+      const view = new MapView({
+        map: map,
+        center: [-97.7431, 30.2672], // Longitude, latitude
+        zoom: 13, // Zoom level
+        container: "viewDiv" // Div element
+      });
+
+    });  
+  </script>
+
+  <!-- CSS to make a full screen map -->
+  <style> html, body, #viewDiv {  padding: 0;  margin: 0;  height: 100%;  width: 100%;  } </style>
+
+  
 </head>
 <body>
-  <h1>Hello, world!</h1>
+  <!-- the div to display the map -->
+  <div id="viewDiv"></div> 
+
 </body>
 </html>
