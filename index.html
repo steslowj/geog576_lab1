@@ -13,7 +13,7 @@
   
   <!-- adding the modules needed for a full screen map app -->
   <script>  
-    require(["esri/config", "esri/Map", "esri/views/MapView", "esri/widgets/BasemapGallery"], function(esriConfig, Map, MapView, BasemapGallery) { 
+    require(["esri/config", "esri/Map", "esri/views/MapView", "esri/widgets/BasemapGallery", "esri/widgets/Expand"], function(esriConfig, Map, MapView, BasemapGallery, Expand) { 
       esriConfig.apiKey = "AAPK9c2d1c71e0c54fea8c41854d79e2bb2aRY4BboQbjkrg1gzIR4byHHAPQAnvnqnY0kwBUXQfbQGvJjGbV3it18SqxWbjCtON";
       const map = new Map({
         basemap: "arcgis-modern-antique" // Basemap layer service 
@@ -22,7 +22,7 @@
       const view = new MapView({
         map: map,
         center: [12.335833, 45.4375], // Longitude, latitude
-        zoom: 10, // Zoom level
+        zoom: 11, // Zoom level
         container: "viewDiv" // Div element
       });
 
@@ -33,6 +33,13 @@
       view.ui.add(basemapGallery, {
         position: "top-right"
       });
+
+      basemapGalleryExpand = new Expand({
+        expandIcon: "basemap", //https://developers.arcgis.com/calcite-design-system/icons/
+        view: view,
+        content: basemapGallery
+      })
+      view.ui.add(basemapGalleryExpand, "top-right");
 
     });  
   </script>
